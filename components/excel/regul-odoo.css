@@ -1,0 +1,19 @@
+.ro .container_input {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-block: 2em;
+}
+.ro .import input {
+    display: none;
+}
+.ro .import {
+    background-color: #1a1a1a;
+    padding: 0.6em 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ro .container_btns button {
+    margin: 1em;
+}
