@@ -1,24 +1,41 @@
-export const cleanData = (data, sheetNames) => {
+export const cleanData = (data, sheetNames, coef) => {
     const copyData = structuredClone(data[`${sheetNames}`]);
     const reduceByName = groupByName(copyData);
-    const newData = test(reduceByName);
+    const newData = test(reduceByName, coef);
 
     return newData;
 };
 
-function test(reduceByName) {
+function test(reduceByName, coef) {
     const newData = [];
+
     for (const item in reduceByName) {
         const user = reduceByName[item];
         const { element, userName } = groupByPartenaire(user);
 
         for (const item in element[userName]) {
-            const partenaire = element[userName][item];
-            partenaire["Heures normales"] = +partenaire["Heures normales"].toFixed(2);
-            partenaire["Total d'heures"] = +partenaire["Total d'heures"].toFixed(2);
+            const p = structuredClone(element[userName][item]);
+            const partenaire = {
+                Agence: p.Agence,
+                Clients: p["Entrées congés/Partenaire"],
+                Manager: p["Responsable RH"],
+                ["Nom EAD"]: p["Employé/Nom"],
+                ["Prénom EAD"]: p["Employé/Prénom"],
+                ["Hrs total"]: (p["Total d'heures"] = +p["Total d'heures"].toFixed(2)),
+                ["Hrs travaillées"]: "",
+                CP: "",
+                ["Hrs supp"]: "",
+                ["Base brut"]: p["Salaire horaire brut hors CP"],
+                ["Base net"]: +(p["Salaire horaire brut hors CP"] * coef).toFixed(2),
+                Date: "",
+                Montant: 0,
+                Commentaires: "",
+            };
             newData.push(partenaire);
         }
     }
+    console.log("🚀 ~ file: cleanData.js ~ line 24 ~ test ~ newData", newData);
+    console.log("🚀 ~ file: cleanData.js ~ line 24 ~ test ~ newData", Object.keys(newData[0]));
     return newData;
 }
 

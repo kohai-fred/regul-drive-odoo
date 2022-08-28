@@ -1,19 +1,82 @@
-.ro .container_input {
+.container {
+    display: flex;
+    gap: 1.5em;
+}
+aside,
+article {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    color: #242424;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+}
+article {
+    flex: 1;
+}
+aside {
     display: flex;
     flex-direction: column;
+    gap: 2.5em;
+}
+aside button {
+    width: 100%;
+}
+.container_coef {
+    display: flex;
+    flex-direction: column;
+}
+.ro .container_input {
+    display: flex;
+    justify-content: space-between;
     gap: 1em;
-    margin-block: 2em;
+    margin-bottom: 2em;
 }
 .ro .import input {
     display: none;
 }
-.ro .import {
-    background-color: #1a1a1a;
-    padding: 0.6em 1.2em;
-    border-radius: 5px;
+.ro .container_input div {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-weight: 600;
+}
+
+.ro div .delete {
+    position: relative;
+    display: grid;
+    place-content: center;
+    width: 1em;
+    aspect-ratio: 1/1;
+    padding: 0.15em;
+    font-size: 0.65em;
+    /* font-weight: 600; */
+    color: red;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
     cursor: pointer;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+.ro .delete span {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .ro .container_btns button {
     margin: 1em;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #242424;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+thead {
+    background-color: aliceblue;
+}
+
+tbody tr:nth-child(odd) td {
+    background-color: #f0f0f0;
 }
